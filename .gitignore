@@ -1,6 +1,9 @@
+*.csv
+
 # python
 .DS_Store
 .ipynb_checkpoint
+.idea
 
 # R
 .Rhistory
