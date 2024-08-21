@@ -1,4 +1,6 @@
+# with python=3.9
 imblearn
 scikit-learn
 numpy
 pandas
+pytest
