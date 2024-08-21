@@ -274,7 +274,6 @@ class DatasetBalancer:
         # separate data for respective over/under-sampling
         under_df = df.loc[df[self.target_variable].isin(under)]
         over_df = df.loc[df[self.target_variable].isin(over)]
-        var_df = df.loc[df[self.target_variable].isin([self.sampling_class])]
 
         logger.info(f"Undersampling the classes with majority representation above {self.sampling_class}")
         under_X_res, under_y_res = self._exec_undersampling(under_df)
@@ -285,10 +284,9 @@ class DatasetBalancer:
         under_X_res[self.target_variable] = under_y_res
         over_X_res[self.target_variable] = over_y_res
 
-        # drop the anchor class from both over & under-sampled sets
-        over_X_res = over_X_res.loc[over_X_res[self.target_variable] != self.sampling_class]
-        under_X_res = under_X_res.loc[under_X_res[self.target_variable] != self.sampling_class]
-        balanced_df = pd.concat([under_X_res, var_df, over_X_res], ignore_index=True)
+        # drop the overlapping classes from the over-sampled set (arbitrarily selected)
+        under_classes = under_X_res[self.target_variable].unique().tolist()
+        over_X_res = over_X_res.loc[~over_X_res[self.target_variable].isin(under_classes)]
+        balanced_df = pd.concat([under_X_res, over_X_res], ignore_index=True)
 
         return balanced_df
-
