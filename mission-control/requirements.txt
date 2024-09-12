@@ -4,3 +4,8 @@ scikit-learn
 numpy
 pandas
 pytest
+nltk
+xgboost==2.1.1
+shap==0.46.0
+matplotlib
+seaborn
