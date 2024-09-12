@@ -1,0 +1,23 @@
+random_seed: 13
+target_variable: "target"
+max_features: 10000
+
+paths:
+  data_path: "../data"
+  save_path: "../model_artifacts"
+
+xgb:
+  learning_rate: 0.1
+  gamma: 0
+  max_depth: 5
+  subsample: 0.8
+  colsample_bytree: 0.6
+  lambda: 1
+  alpha: 0
+  scale_pos_weight: 1
+  max_leaves: 0
+  objective: binary:logistic
+  multi_strategy: one_output_per_tree # for multiclass, use 'multi_output_tree'
+  eval_metric: logloss
+
+

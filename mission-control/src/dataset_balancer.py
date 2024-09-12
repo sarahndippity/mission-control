@@ -8,10 +8,7 @@ from numpy.testing import assert_almost_equal
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.INFO,
-                    format="%(asctime)s %(levelname)s %(message)s",
-                    datefmt='%Y-%m-%d %H:%M:%S')
+logger = logging.getLogger("data_balancer")
 
 
 class DatasetBalancer:

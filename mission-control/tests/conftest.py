@@ -40,3 +40,19 @@ def example_multiclass_imbalanced_dataset():
         "class": ["a", "a", "b", "b", "b", "b", "a", "a", "a", "a", "c", "c", "c", "c", "c"]
     })
     return df
+
+
+@pytest.fixture
+def example_text_for_nlp():
+    return """This is an example string of text for machine learning classification in NLP problems.
+    We can discuss anything in this example string including hobbies, politics, healthcare, and more.
+    The main purpose of this example is to provide data to be used in pytesting.
+    """
+
+
+@pytest.fixture
+def example_cleaned_text_for_nlp():
+    return """example string text machine learning classification NLP problems.
+    we can discuss anything example string including hobbies, politics, healthcare, more.
+    main purpose example provide data used pytesting.
+    """
