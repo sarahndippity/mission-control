@@ -1,4 +1,6 @@
 *.csv
+data/
+artifacts/
 
 # python
 .DS_Store

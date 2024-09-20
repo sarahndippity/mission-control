@@ -25,7 +25,7 @@ def clean_text(text: str) -> str:
         Cleaned text.
     """
     # replace all whitespace with space
-    text = re.sub(r"\b\d+\b", " ", text)
+    text = re.sub(r"[^a-zA-Z]", " ", text)
     # remove punctuation
     words = word_tokenize(text, preserve_line=False)
     stop_words = set(stopwords.words("english"))

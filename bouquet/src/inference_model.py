@@ -1,3 +1,4 @@
+from abc import ABC, abstractmethod
 import logging
 import os
 import time
@@ -6,14 +7,14 @@ import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics import classification_report
 from sklearn.preprocessing import LabelEncoder
-import xgboost as xgb
+from xgboost import XGBClassifier
 
 from src.utils import clean_text
 
 logger = logging.getLogger("inference_model")
 
 
-class BaseNlpModel:
+class BaseNlpModel(ABC):
     def __init__(self):
         """
         Author: Sarah Xie
@@ -43,9 +44,9 @@ class BaseNlpModel:
         self.load_data()
         self.tokenize()
         self.encode()
-        self.train()
+        self.train_model()
         self.predict()
-        self.score()
+        report_dict = self.score()
         self.save_model()
 
     @abstractmethod
@@ -70,7 +71,7 @@ class BaseNlpModel:
         raise NotImplementedError
 
     @abstractmethod
-    def train(self):
+    def train_model(self):
         """
         Train classifier model
         """
@@ -181,7 +182,7 @@ class XGBoostModel(BaseNlpModel):
         if self.val:
             self.y_val = self.val[encoded_col]
 
-    def train(self):
+    def train_model(self):
         """
         Train classifier.
         """
